@@ -2,6 +2,7 @@ import React from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import PostsLists from "../components/PostsLists";
+import AddPostForm from "../components/AddPostForm";
 
 const PostScreen = () => {
   return (
@@ -23,7 +24,9 @@ const PostScreen = () => {
           <Grid item>
             <PostsLists />
           </Grid>
-          <Grid item></Grid>
+          <Grid item>
+            <AddPostForm />
+          </Grid>
         </Grid>
       </Container>
     </div>
