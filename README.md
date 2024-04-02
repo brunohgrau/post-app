@@ -5,3 +5,9 @@
 ## http.patch("/fakeApi/posts/:postId") (Edit Post) - ok 
 ## http.delete("/fakeApi/posts/:postId" (Delete Post) - ok 
 
+Some basic Git commands are:
+```
+git status
+git add
+git commit
+```
