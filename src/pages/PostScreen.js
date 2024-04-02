@@ -1,7 +1,33 @@
 import React from "react";
+import Container from "@mui/material/Container";
+import Grid from "@mui/system/Unstable_Grid/Grid";
+import PostsLists from "../components/PostsLists";
 
 const PostScreen = () => {
-  return <div>PostScreen</div>;
+  return (
+    <div>
+      <Container
+        fixed
+        id="products"
+        sx={{
+          py: { xs: 16 },
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Grid
+          container
+          sx={{ display: "flex ", justifyContent: "space-between" }}
+        >
+          <Grid item>
+            <PostsLists />
+          </Grid>
+          <Grid item></Grid>
+        </Grid>
+      </Container>
+    </div>
+  );
 };
 
 export default PostScreen;

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { Provider } from "react-redux";
+import PostScreen from "./pages/PostScreen";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,7 +12,11 @@ import {
 import store from "./store";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<App />}></Route>)
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route path="/post" element={<PostScreen />} />
+    </Route>
+  )
 );
 
 async function deferRender() {
