@@ -1,11 +1,12 @@
 import PostScreen from "./pages/PostScreen";
 import Header from "./components/Header";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div>
       <Header />
-      <PostScreen />
+      <Outlet />
     </div>
   );
 }
