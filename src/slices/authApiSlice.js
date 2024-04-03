@@ -1,18 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const slice = createSlice({
+const initialState = {
+  user: null,
+};
+
+export const authApiSlice = createSlice({
   name: "auth",
-  initialState: { user: null, token: null },
+  initialState,
   reducers: {
-    setCredentials: (state, { payload: { user, token } }) => {
-      state.user = user;
-      state.token = token;
+    setCredentials: (state, action) => {
+      state.userInfo = action.payload;
+      localStorage.setItem("userInfo", JSON.stringify(action.payload));
+    },
+    logout: (state, action) => {
+      state.userInfo = null;
+      // NOTE: here we need to also remove the cart from storage so the next
+      // logged in user doesn't inherit the previous users cart and shipping
+      localStorage.clear();
     },
   },
 });
-
-export const { setCredentials } = slice.actions;
-
-export default slice.reducer;
-
-export const selectCurrentUser = (state) => state.auth.user;

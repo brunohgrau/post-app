@@ -7,6 +7,8 @@ const NUM_USERS = 3;
 const POSTS_PER_USER = 3;
 const RECENT_NOTIFICATIONS_DAYS = 7;
 
+const token = nanoid();
+
 /* MSW Data Model Setup */
 
 export const db = factory({
@@ -140,24 +142,21 @@ export const handlers = [
     return HttpResponse.json(db.user.getAll());
   }),
 
-  http.get("/api/products", ({ request }) => {
-    return HttpResponse.json([
-      {
-        id: 1,
-        name: "ProductName",
-        image: "/images/airpods.jpg",
-        description:
-          "Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
-        brand: "Apple",
-        category: "Electronics",
-        price: 89.99,
-        countInStock: 10,
-        rating: 4.5,
-        numReviews: 12,
-      },
-    ]);
+  http.post("/fakeApi/login", ({ request }) => {
+    return HttpResponse.json({
+      user: { firstName: "John", lastName: "Doe" },
+      token,
+    });
   }),
-  http.get("/api/products/:id", ({ request }) => {
-    return HttpResponse.json([]);
+
+  http.get("/fakeApi/protected", ({ request }) => {
+    const headers = request.headers.all();
+    if (headers.get("Authorization") === `Bearer ${token}`) {
+      return HttpResponse.json({ message: "This is a protected route!" });
+    }
+    return HttpResponse.json({
+      message:
+        "Join us on the Reactiflux Discord server in #redux if you have any questions.",
+    });
   }),
 ];

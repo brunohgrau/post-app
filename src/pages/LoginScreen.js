@@ -9,7 +9,26 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 
+//import { useLoginMutation } from '../../app/services/auth'
+//import type { LoginRequest } from '../../app/services/auth'
+
 const LoginScreen = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [formState, setFormState] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <Container sx={{ py: { xs: 14 } }} maxWidth="xs">
       <CssBaseline />
@@ -52,11 +71,12 @@ const LoginScreen = () => {
             margin="normal"
             required
             fullWidth
-            name="city"
-            label="City"
+            name="password"
+            label="Password"
             // type="password"
-            id="city"
-            //autoComplete="current-password"
+            id="password"
+            //autoComplete="current-password
+            onChange={handleChange}
           />
           <Button
             type="submit"
@@ -64,6 +84,7 @@ const LoginScreen = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             href="/post"
+            // onClick={}
           >
             Login
           </Button>

@@ -69,4 +69,6 @@ export const {
   useEditPostMutation,
   useAddReactionMutation,
   useDeletePostMutation,
+  useLoginMutation,
+  useProtectedMutation,
 } = apiSlice;
